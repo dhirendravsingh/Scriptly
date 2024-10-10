@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// here we will require two tables, one for the user and one for blogs/posts
+
+
+//in the users table we will not be using integer as id, instead we will make is as a string in the uuid format which is a format to create unique string id
+model User{
+  id       Int   @id @default(autoincrement())
+  email    String @unique
+  name     String?
+  password String
+  blog     Blog[]
+}
+
+model Blog{
+  id       Int   @id @default(autoincrement())  
+  title    String
+  content  String
+  published Boolean @default(false)
+  author    User @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
+
