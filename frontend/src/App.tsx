@@ -8,6 +8,7 @@ import Blog from './pages/Blog'
 import { Routes } from 'react-router-dom'
 import Publish from './pages/Publish'
 import Blogs from './pages/Blogs'
+import Home from './pages/Home'
 function App() {
  
 
@@ -20,6 +21,7 @@ function App() {
      <Route path="/blog/:id" element = {<Blog/>} />
      <Route path="/blogs" element = {<Blogs/>} />
      <Route path="/publish" element = {<Publish/>} />
+     <Route path="/" element = {<Home/>} />
 
      </Routes>
      </BrowserRouter>
